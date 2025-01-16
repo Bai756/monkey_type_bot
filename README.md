@@ -4,5 +4,6 @@ Monkey Type Bot is an automated script designed to type really fast. It pulls th
 
 ## Usage
 
-Press esc to end the program and press space to start typing.
+Run sudo python main.py to start running.
+In the monkeytype browser, press space to start for that specific mode. The program is continuously active, so you can press space again to start it. To exit the program, press esc.
 
