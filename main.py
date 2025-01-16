@@ -27,18 +27,27 @@ space_listener.start()
 
 
 def type_words():
-    type_letters = "placeholder"
+    while not stop_flag.is_set():
+        try:
+            words = driver.find_elements(By.CSS_SELECTOR, "div.word:not(.typed)")
+            
+            if not words:
+                break
+            
+            type_letters = ""
+            
+            for word in words:
+                letters = word.find_elements(By.CSS_SELECTOR, "letter")
 
-    while type_letters != " " and not stop_flag.is_set():
+                for letter in letters:
+                    type_letters += letter.text  
+                    
+                type_letters += " "
 
-        type_letters = ""
-        
-        letters = driver.find_elements(By.CSS_SELECTOR, "div.word.active > letter")
-        for letter in letters:
-            type_letters += letter.text
-        type_letters += " "
+            keyboard.write(type_letters)
 
-        keyboard.write(type_letters)
+        except Exception:
+            break
 
 
 url = "https://monkeytype.com/"
